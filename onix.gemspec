@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.files             = Dir.glob("{lib,support,dtd}/**/**/*") + ["README.markdown", "TODO", "CHANGELOG"]
 
   s.add_dependency('roxml', '~>3.3')
-  s.add_dependency('activesupport', '~>3.2')
+  s.add_dependency('activesupport', '~>2.3.14')
   s.add_dependency('i18n')
   s.add_dependency('nokogiri')
 
