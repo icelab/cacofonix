@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency('roxml', '~>3.3')
   s.add_dependency('activesupport', '~>2.3.14')
   s.add_dependency('i18n')
-  s.add_dependency('nokogiri')
+  s.add_dependency('nokogiri', '< 1.6')
 
   s.add_development_dependency("rake")
   s.add_development_dependency('rdoc')
