@@ -7,5 +7,5 @@ class ONIX::TextItem < ONIX::Element
   xml_accessor :first_page_number, :from => "FirstPageNumber"
   xml_accessor :last_page_number, :from => "LastPageNumber"
   onix_composite :page_runs, ONIX::PageRun
-  xml_accessor :number_of_pages, :from => "NumberOfPages", :as => Fixnum
+  xml_accessor :number_of_pages, :from => "NumberOfPages", :as => Integer
 end

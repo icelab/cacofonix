@@ -25,10 +25,10 @@ class ONIX::SupplyDetail < ONIX::Element
   onix_code_from_list :date_format, "DateFormat", :list => 55
   xml_accessor :expected_ship_date, :from => "ExpectedShipDate"
   onix_date_accessor :on_sale_date, "OnSaleDate"
-  xml_accessor :order_time, :from => "OrderTime", :as => Fixnum
+  xml_accessor :order_time, :from => "OrderTime", :as => Integer
   onix_composite :stocks, ONIX::Stock
   alias_accessor :stock, :stocks # back-compat
-  xml_accessor :pack_quantity, :from => "PackQuantity", :as => Fixnum
+  xml_accessor :pack_quantity, :from => "PackQuantity", :as => Integer
   onix_code_from_list :audience_restriction_flag, "AudienceRestrictionFlag", :list => 56
   xml_accessor :audience_restriction_note, :from => "AudienceRestrictionNote"
   onix_code_from_list :unpriced_item_type, "UnpricedItemType", :list => 57

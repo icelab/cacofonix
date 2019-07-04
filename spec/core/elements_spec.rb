@@ -129,7 +129,7 @@ describe ONIX::Element, "custom accessors" do
         <StrictIdentifier>This is not a valid code in the list</StrictIdentifier>
       </TestElement>
     `
-    lambda { ONIX::TestElement.from_xml(xml) }.should raise_error
+    lambda { ONIX::TestElement.from_xml(xml) }.should raise_error(ONIX::CodeNotFoundInList)
   end
 
 

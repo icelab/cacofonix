@@ -11,7 +11,7 @@ class ONIX::ProductBase < ONIX::Element
   onix_composite :product_form_features, ONIX::ProductFormFeature
   onix_code_from_list :product_packaging, "ProductPackaging", :list => 80
   xml_accessor :product_form_description, :from => "ProductFormDescription"
-  xml_accessor :number_of_pieces, :from => "NumberOfPieces", :as => Fixnum
+  xml_accessor :number_of_pieces, :from => "NumberOfPieces", :as => Integer
   onix_code_from_list :trade_category, "TradeCategory", :list => 12
   onix_code_from_list :product_content_type, "ProductContentType", :list => 81
   onix_code_from_list :epub_type, "EpubType", :list => 10

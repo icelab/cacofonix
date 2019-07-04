@@ -17,7 +17,7 @@ describe ONIX::Price do
     p = ONIX::Price.from_xml(@root.to_s)
 
     p.price_type_code.should eql(2)
-    p.price_amount.should eql(BigDecimal.new("7.5"))
+    p.price_amount.should eql(BigDecimal("7.5"))
   end
 
   it "should provide write access to first level attributes" do
@@ -26,9 +26,8 @@ describe ONIX::Price do
     p.price_type_code = 1
     p.to_xml.to_s.include?("<PriceTypeCode>01</PriceTypeCode>").should be true
 
-    p.price_amount = BigDecimal.new("7.5")
+    p.price_amount = BigDecimal("7.5")
     p.to_xml.to_s.include?("<PriceAmount>7.5</PriceAmount>").should be true
-
   end
 
 end

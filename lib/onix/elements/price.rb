@@ -19,7 +19,7 @@ module ONIX
     onix_code_from_list :price_type_qualifier, "PriceTypeQualifier", :list => 59
     xml_accessor :price_type_description, :from => "PriceTypeDescription"
     onix_code_from_list :price_per, "PricePer", :list => 60
-    xml_accessor :minimum_order_qty, :from => "MinimumOrderQuantity", :as => Fixnum
+    xml_accessor :minimum_order_qty, :from => "MinimumOrderQuantity", :as => Integer
     onix_composite :batch_bonuses, ONIX::BatchBonus
     xml_accessor :class_of_trade, :from => "ClassOfTradeCode"
     xml_accessor :bic_discount_group_code, :from => "BICDiscountGroupCode"

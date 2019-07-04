@@ -8,7 +8,7 @@ module ONIX
     attr_reader :key, :value, :list, :list_number
 
     # Note re: key type. For backwards compatibility, code keys that are
-    # all-digits are passed around in this gem as Fixnums.
+    # all-digits are passed around in this gem as Integers.
     #
     # The actual code list hashes have string-based keys for consistency. If
     # you want the integer-or-string key, use Code#key. If you want the real
@@ -28,7 +28,7 @@ module ONIX
       @key = @value = nil
       return  if data.nil? || data == ""
 
-      if data.kind_of?(Fixnum)
+      if data.kind_of?(Integer)
         @key = data
         pad_length = options[:length] || ["#{@list.size}".size, 2].max
         @real_key = pad(data, pad_length)
@@ -80,7 +80,7 @@ module ONIX
 
     private
 
-      # Converts a Fixnum key into a String key.
+      # Converts a Integer key into a String key.
       #
       def pad(key, len)
         key ? key.to_s.rjust(len, '0') : nil
