@@ -35,8 +35,8 @@ describe ONIX::Code, "instantiation" do
   end
 
   it "should say code is invalid for an unmatched key or value" do
-    ONIX::Code.new(1, 9999).valid?.should be_false
-    ONIX::Code.new(1, 1).valid?.should be_true
+    ONIX::Code.new(1, 9999).valid?.should be false
+    ONIX::Code.new(1, 1).valid?.should be true
   end
 
   it "should pad to_s output if initialised with integer key and length" do

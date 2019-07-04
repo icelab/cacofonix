@@ -24,13 +24,13 @@ describe ONIX::Title do
     t = ONIX::Title.new
 
     t.title_type = 1
-    t.to_xml.to_s.include?("<TitleType>01</TitleType>").should be_true
+    t.to_xml.to_s.include?("<TitleType>01</TitleType>").should be true
 
     t.title_text = "Good Grief"
-    t.to_xml.to_s.include?("<TitleText>Good Grief</TitleText>").should be_true
+    t.to_xml.to_s.include?("<TitleText>Good Grief</TitleText>").should be true
 
     t.subtitle = "Blah"
-    t.to_xml.to_s.include?("<Subtitle>Blah</Subtitle>").should be_true
+    t.to_xml.to_s.include?("<Subtitle>Blah</Subtitle>").should be true
 
   end
 

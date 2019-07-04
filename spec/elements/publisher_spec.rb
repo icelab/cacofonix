@@ -23,10 +23,10 @@ describe ONIX::Publisher do
     pub = ONIX::Publisher.new
 
     pub.publisher_name = "Paulist Press"
-    pub.to_xml.to_s.include?("<PublisherName>Paulist Press</PublisherName>").should be_true
+    pub.to_xml.to_s.include?("<PublisherName>Paulist Press</PublisherName>").should be true
 
     pub.publishing_role = 2
-    pub.to_xml.to_s.include?("<PublishingRole>02</PublishingRole>").should be_true
+    pub.to_xml.to_s.include?("<PublishingRole>02</PublishingRole>").should be true
   end
 
 end

@@ -16,10 +16,11 @@ describe ONIX::Normaliser, "with a simple short tag file" do
   it "should correctly convert short tag file to reference tag" do
     ONIX::Normaliser.process(@filename, @outfile)
 
-    File.file?(@outfile).should be_true
+    File.file?(@outfile).should be true
     content = File.read(@outfile)
-    content.include?("<m174>").should be_false
-    content.include?("<FromCompany>").should be_true
+
+    content.include?("<m174>").should be false
+    content.include?("<FromCompany>").should be true
   end
 end
 
@@ -37,11 +38,11 @@ describe ONIX::Normaliser, "with a short tag file that include HTML tags" do
   it "should correctly convert short tag file to reference tag" do
     ONIX::Normaliser.process(@filename, @outfile)
 
-    File.file?(@outfile).should be_true
+    File.file?(@outfile).should be true
     content = File.read(@outfile)
-    content.include?("<m174>").should be_false
-    content.include?("<FromCompany>").should be_true
-    content.include?("<em>Discipleship Essentials</em>").should be_true
+    content.include?("<m174>").should be false
+    content.include?("<FromCompany>").should be true
+    content.include?("<em>Discipleship Essentials</em>").should be true
   end
 
 end
@@ -60,9 +61,9 @@ describe ONIX::Normaliser, "with a utf8 file that has illegal control chars" do
   it "should remove all control chars except LF, CR and TAB" do
     ONIX::Normaliser.process(@filename, @outfile)
 
-    File.file?(@outfile).should be_true
+    File.file?(@outfile).should be true
     content = File.read(@outfile)
 
-    content.include?("<TitleText>OXFORDPICTURE DICTIONARY CHINESE</TitleText>").should be_true
+    content.include?("<TitleText>OXFORDPICTURE DICTIONARY CHINESE</TitleText>").should be true
   end
 end

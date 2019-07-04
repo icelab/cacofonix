@@ -87,9 +87,9 @@ describe ONIX::Writer do
   it "should correctly store finished state" do
     header = ONIX::Header.new
     writer = ONIX::Writer.new(@output, header)
-    writer.finished?.should be_false
+    writer.finished?.should be false
     writer.end_document
-    writer.finished?.should be_true
+    writer.finished?.should be true
   end
 
 =begin
@@ -98,7 +98,7 @@ describe ONIX::Writer do
     header.from_person = "Hans Küng"
     ONIX::Writer.open(@output, header) { |writer| }
 
-    @output.string.include?("K&#252;ng").should be_true
+    @output.string.include?("K&#252;ng").should be true
   end
 =end
 end

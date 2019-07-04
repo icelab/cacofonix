@@ -23,10 +23,10 @@ describe ONIX::Imprint do
     imp = ONIX::Imprint.new
 
     imp.imprint_name = "Paulist Press"
-    imp.to_xml.to_s.include?("<ImprintName>Paulist Press</ImprintName>").should be_true
+    imp.to_xml.to_s.include?("<ImprintName>Paulist Press</ImprintName>").should be true
 
     imp.name_code_type = 1
-    imp.to_xml.to_s.include?("<NameCodeType>01</NameCodeType>").should be_true
+    imp.to_xml.to_s.include?("<NameCodeType>01</NameCodeType>").should be true
 
   end
 

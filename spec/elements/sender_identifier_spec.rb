@@ -24,10 +24,10 @@ describe ONIX::SenderIdentifier do
     id = ONIX::SenderIdentifier.new
 
     id.sender_id_type = 1
-    id.to_xml.to_s.include?("<SenderIDType>01</SenderIDType>").should be_true
+    id.to_xml.to_s.include?("<SenderIDType>01</SenderIDType>").should be true
 
     id.id_value = "54321"
-    id.to_xml.to_s.include?("<IDValue>54321</IDValue>").should be_true
+    id.to_xml.to_s.include?("<IDValue>54321</IDValue>").should be true
 
   end
 

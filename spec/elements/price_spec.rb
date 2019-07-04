@@ -24,10 +24,10 @@ describe ONIX::Price do
     p = ONIX::Price.new
 
     p.price_type_code = 1
-    p.to_xml.to_s.include?("<PriceTypeCode>01</PriceTypeCode>").should be_true
+    p.to_xml.to_s.include?("<PriceTypeCode>01</PriceTypeCode>").should be true
 
     p.price_amount = BigDecimal.new("7.5")
-    p.to_xml.to_s.include?("<PriceAmount>7.5</PriceAmount>").should be_true
+    p.to_xml.to_s.include?("<PriceAmount>7.5</PriceAmount>").should be true
 
   end
 

@@ -136,8 +136,8 @@ describe ONIX::Element, "custom accessors" do
   it "should recognise boolean flags" do
     xml = "<TestElement><NoDice /></TestElement>"
     elem = ONIX::TestElement.from_xml(xml)
-    elem.no_dice.should be_true
-    elem.no_cigar.should be_false
+    elem.no_dice.should be true
+    elem.no_cigar.should be false
   end
 
 

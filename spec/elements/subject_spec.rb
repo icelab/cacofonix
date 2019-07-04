@@ -24,10 +24,10 @@ describe ONIX::Subject do
     sub = ONIX::Subject.new
 
     sub.subject_scheme_id = 2
-    sub.to_xml.to_s.include?("<SubjectSchemeIdentifier>02</SubjectSchemeIdentifier>").should be_true
+    sub.to_xml.to_s.include?("<SubjectSchemeIdentifier>02</SubjectSchemeIdentifier>").should be true
 
     sub.subject_code = "ABCD"
-    sub.to_xml.to_s.include?("<SubjectCode>ABCD</SubjectCode>").should be_true
+    sub.to_xml.to_s.include?("<SubjectCode>ABCD</SubjectCode>").should be true
 
   end
 

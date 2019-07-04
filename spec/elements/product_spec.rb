@@ -54,31 +54,31 @@ describe ONIX::Product do
     product = ONIX::Product.new
 
     product.notification_type = 3
-    product.to_xml.to_s.include?("<NotificationType>03</NotificationType>").should be_true
+    product.to_xml.to_s.include?("<NotificationType>03</NotificationType>").should be true
 
     product.record_reference = "365-9780194351898"
-    product.to_xml.to_s.include?("<RecordReference>365-9780194351898</RecordReference>").should be_true
+    product.to_xml.to_s.include?("<RecordReference>365-9780194351898</RecordReference>").should be true
 
     product.product_form = "BC"
-    product.to_xml.to_s.include?("<ProductForm>BC</ProductForm>").should be_true
+    product.to_xml.to_s.include?("<ProductForm>BC</ProductForm>").should be true
 
     product.edition_number = 1
-    product.to_xml.to_s.include?("<EditionNumber>1</EditionNumber>").should be_true
+    product.to_xml.to_s.include?("<EditionNumber>1</EditionNumber>").should be true
 
     product.number_of_pages = 100
-    product.to_xml.to_s.include?("<NumberOfPages>100</NumberOfPages>").should be_true
+    product.to_xml.to_s.include?("<NumberOfPages>100</NumberOfPages>").should be true
 
     product.bic_main_subject = "EB"
-    product.to_xml.to_s.include?("<BICMainSubject>EB</BICMainSubject>").should be_true
+    product.to_xml.to_s.include?("<BICMainSubject>EB</BICMainSubject>").should be true
 
     product.publishing_status = 4
-    product.to_xml.to_s.include?("<PublishingStatus>04</PublishingStatus>").should be_true
+    product.to_xml.to_s.include?("<PublishingStatus>04</PublishingStatus>").should be true
 
     product.publication_date = Date.civil(1998,9,1)
-    product.to_xml.to_s.include?("<PublicationDate>19980901</PublicationDate>").should be_true
+    product.to_xml.to_s.include?("<PublicationDate>19980901</PublicationDate>").should be true
 
     product.year_first_published = 1998
-    product.to_xml.to_s.include?("<YearFirstPublished>1998</YearFirstPublished>").should be_true
+    product.to_xml.to_s.include?("<YearFirstPublished>1998</YearFirstPublished>").should be true
   end
 
   it "should correctly from_xml files that have an invalid publication date" do

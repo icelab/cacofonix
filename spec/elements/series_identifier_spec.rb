@@ -24,10 +24,10 @@ describe ONIX::SeriesIdentifier do
     series = ONIX::SeriesIdentifier.new
 
     series.series_id_type = 9
-    series.to_xml.to_s.include?("<SeriesIDType>09</SeriesIDType>").should be_true
+    series.to_xml.to_s.include?("<SeriesIDType>09</SeriesIDType>").should be true
 
     series.id_value = 999
-    series.to_xml.to_s.include?("<IDValue>999</IDValue>").should be_true
+    series.to_xml.to_s.include?("<IDValue>999</IDValue>").should be true
   end
 
 end

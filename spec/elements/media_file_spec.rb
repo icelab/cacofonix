@@ -24,13 +24,13 @@ describe ONIX::MediaFile do
     mf = ONIX::MediaFile.new
 
     mf.media_file_type_code = 2
-    mf.to_xml.to_s.include?("<MediaFileTypeCode>02</MediaFileTypeCode>").should be_true
+    mf.to_xml.to_s.include?("<MediaFileTypeCode>02</MediaFileTypeCode>").should be true
 
     mf.media_file_link_type_code = 1
-    mf.to_xml.to_s.include?("<MediaFileLinkTypeCode>01</MediaFileLinkTypeCode>").should be_true
+    mf.to_xml.to_s.include?("<MediaFileLinkTypeCode>01</MediaFileLinkTypeCode>").should be true
 
     mf.media_file_link = "http://www.google.com"
-    mf.to_xml.to_s.include?("<MediaFileLink>http://www.google.com</MediaFileLink>").should be_true
+    mf.to_xml.to_s.include?("<MediaFileLink>http://www.google.com</MediaFileLink>").should be true
   end
 
 end

@@ -29,13 +29,13 @@ describe ONIX::AudienceRange do
     aud = ONIX::AudienceRange.new
 
     aud.audience_range_qualifier = 12
-    aud.to_xml.to_s.include?("<AudienceRangeQualifier>12</AudienceRangeQualifier>").should be_true
+    aud.to_xml.to_s.include?("<AudienceRangeQualifier>12</AudienceRangeQualifier>").should be true
 
     aud.audience_range_precisions = [888]
-    aud.to_xml.to_s.include?("<AudienceRangePrecision>888</AudienceRangePrecision>").should be_true
+    aud.to_xml.to_s.include?("<AudienceRangePrecision>888</AudienceRangePrecision>").should be true
 
     aud.audience_range_values = [999]
-    aud.to_xml.to_s.include?("<AudienceRangeValue>999</AudienceRangeValue>").should be_true
+    aud.to_xml.to_s.include?("<AudienceRangeValue>999</AudienceRangeValue>").should be true
   end
 
 end

@@ -25,13 +25,13 @@ describe ONIX::Contributor do
     contrib = ONIX::Contributor.new
 
     contrib.contributor_role = "A02"
-    contrib.to_xml.to_s.include?("<ContributorRole>A02</ContributorRole>").should be_true
+    contrib.to_xml.to_s.include?("<ContributorRole>A02</ContributorRole>").should be true
 
     contrib.person_name_inverted = "Healy, James"
-    contrib.to_xml.to_s.include?("<PersonNameInverted>Healy, James</PersonNameInverted>").should be_true
+    contrib.to_xml.to_s.include?("<PersonNameInverted>Healy, James</PersonNameInverted>").should be true
 
     contrib.sequence_number = 1
-    contrib.to_xml.to_s.include?("<SequenceNumber>1</SequenceNumber>").should be_true
+    contrib.to_xml.to_s.include?("<SequenceNumber>1</SequenceNumber>").should be true
   end
 
 end

@@ -24,10 +24,10 @@ describe ONIX::MarketRepresentation do
     rep = ONIX::MarketRepresentation.new
 
     rep.agent_name = "Rainbow Book Agencies"
-    rep.to_xml.to_s.include?("<AgentName>Rainbow Book Agencies</AgentName>").should be_true
+    rep.to_xml.to_s.include?("<AgentName>Rainbow Book Agencies</AgentName>").should be true
 
     rep.agent_role = 3
-    rep.to_xml.to_s.include?("<AgentRole>03</AgentRole>").should be_true
+    rep.to_xml.to_s.include?("<AgentRole>03</AgentRole>").should be true
 
   end
 

@@ -24,10 +24,10 @@ describe ONIX::Website do
     web = ONIX::Website.new
 
     web.website_role = 2
-    web.to_xml.to_s.include?("<WebsiteRole>02</WebsiteRole>").should be_true
+    web.to_xml.to_s.include?("<WebsiteRole>02</WebsiteRole>").should be true
 
     web.website_link = "http://www.yob.id.au"
-    web.to_xml.to_s.include?("<WebsiteLink>http://www.yob.id.au</WebsiteLink>").should be_true
+    web.to_xml.to_s.include?("<WebsiteLink>http://www.yob.id.au</WebsiteLink>").should be true
 
   end
 

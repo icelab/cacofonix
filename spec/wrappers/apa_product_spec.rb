@@ -28,28 +28,28 @@ describe "ONIX::APAProduct" do
     apa = ONIX::APAProduct.new
 
     apa.notification_type = 3
-    apa.to_xml.to_s.include?("<NotificationType>03</NotificationType>").should be_true
+    apa.to_xml.to_s.include?("<NotificationType>03</NotificationType>").should be true
 
     apa.record_reference = "365-9780194351898"
-    apa.to_xml.to_s.include?("<RecordReference>365-9780194351898</RecordReference>").should be_true
+    apa.to_xml.to_s.include?("<RecordReference>365-9780194351898</RecordReference>").should be true
 
     apa.product_form = "BC"
-    apa.to_xml.to_s.include?("<ProductForm>BC</ProductForm>").should be_true
+    apa.to_xml.to_s.include?("<ProductForm>BC</ProductForm>").should be true
 
     apa.number_of_pages = 100
-    apa.to_xml.to_s.include?("<NumberOfPages>100</NumberOfPages>").should be_true
+    apa.to_xml.to_s.include?("<NumberOfPages>100</NumberOfPages>").should be true
 
     apa.bic_main_subject = "EB"
-    apa.to_xml.to_s.include?("<BICMainSubject>EB</BICMainSubject>").should be_true
+    apa.to_xml.to_s.include?("<BICMainSubject>EB</BICMainSubject>").should be true
 
     apa.publishing_status = 4
-    apa.to_xml.to_s.include?("<PublishingStatus>04</PublishingStatus>").should be_true
+    apa.to_xml.to_s.include?("<PublishingStatus>04</PublishingStatus>").should be true
 
     apa.publication_date = Date.civil(1998,9,1)
-    apa.to_xml.to_s.include?("<PublicationDate>19980901</PublicationDate>").should be_true
+    apa.to_xml.to_s.include?("<PublicationDate>19980901</PublicationDate>").should be true
 
     apa.pack_quantity = 12
-    apa.to_xml.to_s.include?("<PackQuantity>12</PackQuantity>").should be_true
+    apa.to_xml.to_s.include?("<PackQuantity>12</PackQuantity>").should be true
   end
 
 end
@@ -60,7 +60,7 @@ describe ONIX::APAProduct, "series method" do
 
     apa.series = "Harry Potter"
     apa.series.should eql("Harry Potter")
-    apa.to_xml.to_s.include?("<TitleOfSeries>Harry Potter</TitleOfSeries>").should be_true
+    apa.to_xml.to_s.include?("<TitleOfSeries>Harry Potter</TitleOfSeries>").should be true
   end
 end
 

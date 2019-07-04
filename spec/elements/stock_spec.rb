@@ -26,13 +26,13 @@ describe ONIX::Stock do
     s = ONIX::Stock.new
 
     s.on_hand = "123"
-    s.to_xml.to_s.include?("<OnHand>123</OnHand>").should be_true
+    s.to_xml.to_s.include?("<OnHand>123</OnHand>").should be true
 
     s.on_order = "011"
-    s.to_xml.to_s.include?("<OnOrder>011</OnOrder>").should be_true
+    s.to_xml.to_s.include?("<OnOrder>011</OnOrder>").should be true
 
     s.on_order = 11
-    s.to_xml.to_s.include?("<OnOrder>11</OnOrder>").should be_true
+    s.to_xml.to_s.include?("<OnOrder>11</OnOrder>").should be true
   end
 
 end

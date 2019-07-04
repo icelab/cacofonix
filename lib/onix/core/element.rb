@@ -8,7 +8,6 @@ module ONIX
 
     require 'active_support/core_ext/class'
 
-    #class_inheritable_accessor(:xml_array_accessors)
     class_attribute(:xml_array_accessors)
 
     # An accessor to an array of element instances.

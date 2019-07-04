@@ -24,10 +24,10 @@ describe ONIX::OtherText do
     ot = ONIX::OtherText.new
 
     ot.text_type_code = 2
-    ot.to_xml.to_s.include?("<TextTypeCode>02</TextTypeCode>").should be_true
+    ot.to_xml.to_s.include?("<TextTypeCode>02</TextTypeCode>").should be true
 
     ot.text = "James Healy"
-    ot.to_xml.to_s.include?("<Text>James Healy</Text>").should be_true
+    ot.to_xml.to_s.include?("<Text>James Healy</Text>").should be true
 
   end
 

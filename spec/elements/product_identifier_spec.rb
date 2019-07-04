@@ -24,10 +24,10 @@ describe ONIX::ProductIdentifier do
     id = ONIX::ProductIdentifier.new
 
     id.product_id_type = 2
-    id.to_xml.to_s.include?("<ProductIDType>02</ProductIDType>").should be_true
+    id.to_xml.to_s.include?("<ProductIDType>02</ProductIDType>").should be true
 
     id.id_value = "James"
-    id.to_xml.to_s.include?("<IDValue>James</IDValue>").should be_true
+    id.to_xml.to_s.include?("<IDValue>James</IDValue>").should be true
 
   end
 

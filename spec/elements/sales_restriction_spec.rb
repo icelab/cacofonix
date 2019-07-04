@@ -23,7 +23,7 @@ describe "ONIX::SalesRestriction" do
     sr = ONIX::SalesRestriction.new
 
     sr.sales_restriction_type = 1
-    sr.to_xml.to_s.include?("<SalesRestrictionType>01</SalesRestrictionType>").should be_true
+    sr.to_xml.to_s.include?("<SalesRestrictionType>01</SalesRestrictionType>").should be true
   end
 
 end

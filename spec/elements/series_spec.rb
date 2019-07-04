@@ -23,7 +23,7 @@ describe ONIX::Series do
     series = ONIX::Series.new
 
     series.title_of_series = "Cool Science Careers"
-    series.to_xml.to_s.include?("<TitleOfSeries>Cool Science Careers</TitleOfSeries>").should be_true
+    series.to_xml.to_s.include?("<TitleOfSeries>Cool Science Careers</TitleOfSeries>").should be true
   end
 
 end

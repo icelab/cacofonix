@@ -29,19 +29,19 @@ describe ONIX::SupplyDetail do
     sd = ONIX::SupplyDetail.new
 
     sd.supplier_name = "RBA"
-    sd.to_xml.to_s.include?("<SupplierName>RBA</SupplierName>").should be_true
+    sd.to_xml.to_s.include?("<SupplierName>RBA</SupplierName>").should be true
 
     sd.supplier_role = 1
-    sd.to_xml.to_s.include?("<SupplierRole>01</SupplierRole>").should be_true
+    sd.to_xml.to_s.include?("<SupplierRole>01</SupplierRole>").should be true
 
     sd.availability_code = 2
-    sd.to_xml.to_s.include?("<AvailabilityCode>02</AvailabilityCode>").should be_true
+    sd.to_xml.to_s.include?("<AvailabilityCode>02</AvailabilityCode>").should be true
 
     sd.product_availability = 3
-    sd.to_xml.to_s.include?("<ProductAvailability>03</ProductAvailability>").should be_true
+    sd.to_xml.to_s.include?("<ProductAvailability>03</ProductAvailability>").should be true
 
     sd.pack_quantity = 12
-    sd.to_xml.to_s.include?("<PackQuantity>12</PackQuantity>").should be_true
+    sd.to_xml.to_s.include?("<PackQuantity>12</PackQuantity>").should be true
   end
 
 end

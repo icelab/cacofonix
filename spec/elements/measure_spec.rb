@@ -25,13 +25,13 @@ describe ONIX::Measure do
     m = ONIX::Measure.new
 
     m.measure_type_code = 1
-    m.to_xml.to_s.include?("<MeasureTypeCode>01</MeasureTypeCode>").should be_true
+    m.to_xml.to_s.include?("<MeasureTypeCode>01</MeasureTypeCode>").should be true
 
     m.measurement = 300
-    m.to_xml.to_s.include?("<Measurement>300</Measurement>").should be_true
+    m.to_xml.to_s.include?("<Measurement>300</Measurement>").should be true
 
     m.measure_unit_code = "mm"
-    m.to_xml.to_s.include?("<MeasureUnitCode>mm</MeasureUnitCode>").should be_true
+    m.to_xml.to_s.include?("<MeasureUnitCode>mm</MeasureUnitCode>").should be true
   end
 
 end

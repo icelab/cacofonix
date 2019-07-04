@@ -25,13 +25,13 @@ describe ONIX::Language do
     lan = ONIX::Language.new
 
     lan.language_role = 2
-    lan.to_xml.to_s.include?("<LanguageRole>02</LanguageRole>").should be_true
+    lan.to_xml.to_s.include?("<LanguageRole>02</LanguageRole>").should be true
 
     lan.language_code = "aar"
-    lan.to_xml.to_s.include?("<LanguageCode>aar</LanguageCode>").should be_true
+    lan.to_xml.to_s.include?("<LanguageCode>aar</LanguageCode>").should be true
 
     lan.country_code = "AD"
-    lan.to_xml.to_s.include?("<CountryCode>AD</CountryCode>").should be_true
+    lan.to_xml.to_s.include?("<CountryCode>AD</CountryCode>").should be true
   end
 
 end
