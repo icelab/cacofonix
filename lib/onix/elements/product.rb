@@ -38,7 +38,7 @@ class ONIX::Product < ONIX::ProductBase
   onix_composite :work_identifiers, ONIX::WorkIdentifier
   onix_code_from_list :thesis_type, "ThesisType", :list => 72
   xml_accessor :thesis_presented_to, :from => "ThesisPresentedTo"
-  xml_accessor :year_of_thesis, :from => "YearOfThesis", :as => Fixnum
+  xml_accessor :year_of_thesis, :from => "YearOfThesis", :as => Integer
 
   # PR.8 Authorship
   onix_composite :contributors, ONIX::Contributor
@@ -50,7 +50,7 @@ class ONIX::Product < ONIX::ProductBase
 
   # PR.10 Edition
   onix_code_from_list :edition_type_code, "EditionTypeCode", :list => 21
-  xml_accessor :edition_number, :from => "EditionNumber", :as => Fixnum
+  xml_accessor :edition_number, :from => "EditionNumber", :as => Integer
   xml_accessor :edition_version_number, :from => "EditionVersionNumber"
   xml_accessor :edition_statement, :from => "EditionStatement"
   onix_boolean_flag(:no_edition, "NoEdition")
@@ -60,14 +60,14 @@ class ONIX::Product < ONIX::ProductBase
   onix_composite :languages, ONIX::Language
 
   # PR.12 Extents and other content
-  xml_accessor :number_of_pages, :from => "NumberOfPages", :as => Fixnum
+  xml_accessor :number_of_pages, :from => "NumberOfPages", :as => Integer
   xml_accessor :pages_roman, :from => "PagesRoman"
-  xml_accessor :pages_arabic, :from => "PagesArabic", :as => Fixnum
+  xml_accessor :pages_arabic, :from => "PagesArabic", :as => Integer
   onix_composite :extents, ONIX::Extent
-  xml_accessor :number_of_illustrations, :from => "NumberOfIllustrations", :as => Fixnum
+  xml_accessor :number_of_illustrations, :from => "NumberOfIllustrations", :as => Integer
   xml_accessor :illustrations_note, :from => "IllustrationsNote"
   onix_composite :illustrations, ONIX::Illustrations
-  xml_accessor :map_scale, :from => "MapScale", :as => [Fixnum]
+  xml_accessor :map_scale, :from => "MapScale", :as => [Integer]
 
   # PR.13 Subject
   xml_accessor :basic_main_subject, :from => "BASICMainSubject"
@@ -115,8 +115,8 @@ class ONIX::Product < ONIX::ProductBase
   onix_date_accessor :trade_announcement_date, "TradeAnnouncementDate"
   onix_date_accessor :publication_date, "PublicationDate"
   onix_composite :copyright_statements, ONIX::CopyrightStatement
-  xml_accessor :copyright_year, :from => "CopyrightYear", :as => Fixnum
-  xml_accessor :year_first_published, :from => "YearFirstPublished", :as => Fixnum
+  xml_accessor :copyright_year, :from => "CopyrightYear", :as => Integer
+  xml_accessor :year_first_published, :from => "YearFirstPublished", :as => Integer
 
   # PR.21 Territorial rights and other sales restrictions
   onix_composite :sales_rights, ONIX::SalesRights
