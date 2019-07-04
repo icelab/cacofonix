@@ -1,6 +1,7 @@
 # coding: utf-8
 
 require 'stringio'
+require "cacofonix/dtds"
 
 module ONIX
 
@@ -114,9 +115,11 @@ module ONIX
     private
 
     def create_parser
+      Cacofonix::DTDs.apply_libxml_env!
+
       parser_config = lambda { |cfg|
         cfg.noent
-        cfg.dtdload  unless @options[:dtd] == false
+        cfg.dtdload unless @options[:dtd] == false
       }
       if @input.kind_of?(String)
         @file   = File.open(@input, "r")
