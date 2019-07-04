@@ -5,7 +5,7 @@ require 'spec_helper.rb'
 describe ONIX::Code, "instantiation" do
 
   it "should raise an error for an invalid codelist number" do
-    lambda { ONIX::Code.new(500, 1) }.should raise_error
+    lambda { ONIX::Code.new(500, 1) }.should raise_error(LoadError)
   end
 
   it "should find the codelist from a valid number" do
