@@ -26,7 +26,7 @@ module ONIX
 
     # retrieve the current EAN
     def ean
-      identifier(3).try(:id_value)
+      identifier(3)&.id_value
     end
 
     # set a new EAN
@@ -46,7 +46,7 @@ module ONIX
 
     # retrieve the current ISBN 10
     def isbn10
-      identifier(2).try(:id_value)
+      identifier(2)&.id_value
     end
 
     # set a new ISBN 10
@@ -56,7 +56,7 @@ module ONIX
 
     # retrieve the current ISBN 13
     def isbn13
-      identifier(15).try(:id_value)
+      identifier(15)&.id_value
     end
 
     # set a new ISBN 13
@@ -108,7 +108,7 @@ module ONIX
 
     def series
       composite = product.series.first
-      composite.try(:title_of_series)
+      composite&.title_of_series
     end
 
     def series=(val)
@@ -122,7 +122,7 @@ module ONIX
 
     # retrieve the current publisher website for this particular product
     def publisher_website
-      website(2).try(:website_link)
+      website(2)&.website_link
     end
 
     # set a new publisher website for this particular product
@@ -132,7 +132,7 @@ module ONIX
 
     # retrieve the current supplier website for this particular product
     def supplier_website
-      website(12).try(:website_link)
+      website(12)&.website_link
     end
 
     # set a new supplier website for this particular product
@@ -181,7 +181,7 @@ module ONIX
 
     # retrieve the url to the product cover image
     def cover_url
-      media_file(4).try(:media_file_link)
+      media_file(4)&.media_file_link
     end
 
     # set the url to the product cover image
@@ -193,7 +193,7 @@ module ONIX
 
     # retrieve the url to the high quality product cover image
     def cover_url_hq
-      media_file(6).try(:media_file_link)
+      media_file(6)&.media_file_link
     end
 
     # set the url to the high quality product cover image
@@ -205,7 +205,7 @@ module ONIX
 
     # retrieve the url to the product thumbnail
     def thumbnail_url
-      media_file(7).try(:media_file_link)
+      media_file(7)&.media_file_link
     end
 
     # set the url to the product cover image
@@ -217,7 +217,7 @@ module ONIX
 
     # retrieve the main description
     def main_description
-      other_text(1).try(:text)
+      other_text(1)&.text
     end
 
     # set the main description
@@ -227,7 +227,7 @@ module ONIX
 
     # retrieve the short description
     def short_description
-      other_text(2).try(:text)
+      other_text(2)&.text
     end
 
     # set the short description
@@ -237,7 +237,7 @@ module ONIX
 
     # retrieve the long description
     def long_description
-      other_text(3).try(:text)
+      other_text(3)&.text
     end
 
     # set the long description
@@ -263,7 +263,7 @@ module ONIX
 
     # retrieve the publisher
     def publisher
-      publisher_get(1).try(:publisher_name)
+      publisher_get(1)&.publisher_name
     end
 
     # set a new publisher
@@ -417,7 +417,7 @@ module ONIX
 
     # retrieve the rrp excluding any sales tax
     def rrp_exc_sales_tax
-      price_get(1).try(:price_amount)
+      price_get(1)&.price_amount
     end
 
     # set the rrp excluding any sales tax
@@ -427,7 +427,7 @@ module ONIX
 
     # retrieve the rrp including any sales tax
     def rrp_inc_sales_tax
-      price_get(2).try(:price_amount)
+      price_get(2)&.price_amount
     end
 
     # set the rrp including any sales tax
@@ -438,7 +438,7 @@ module ONIX
     # just get the first price we can find, regardless of the type.
     # useful as a backup for reading files from that don't contain a type
     def price
-      price_get(nil).try(:price_amount)
+      price_get(nil)&.price_amount
     end
 
     # retrieve the height of the product
@@ -448,7 +448,7 @@ module ONIX
     #
     def height
       # TODO: auto unit conversion
-      measurement(1).try(:measurement)
+      measurement(1)&.measurement
     end
 
     # set the height of the book
@@ -471,7 +471,7 @@ module ONIX
     #
     def width
       # TODO: auto unit conversion
-      measurement(2).try(:measurement)
+      measurement(2)&.measurement
     end
 
     # set the width of the product
@@ -494,7 +494,7 @@ module ONIX
     #
     def weight
       # TODO: auto unit conversion
-      measurement(8).try(:measurement)
+      measurement(8)&.measurement
     end
 
     # set the weight of the product
@@ -517,7 +517,7 @@ module ONIX
     #
     def thickness
       # TODO: auto unit conversion
-      measurement(3).try(:measurement)
+      measurement(3)&.measurement
     end
 
     # set the thickness of the product
