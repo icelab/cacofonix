@@ -137,7 +137,7 @@ module ONIX
         if @reader.node_type == 1 && @reader.name == "ONIXMessage"
           value = @reader.attributes["release"]
           if value
-            return BigDecimal.new(value)
+            return BigDecimal(value)
           else
             return nil
           end

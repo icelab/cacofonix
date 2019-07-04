@@ -24,7 +24,7 @@ describe ONIX::Product do
 
     # including ye olde, deprecated ones
     product.height.should eql(100)
-    product.width.should eql(BigDecimal.new("200.5"))
+    product.width.should eql(BigDecimal("200.5"))
     product.weight.should eql(300)
     product.thickness.should eql(300)
     product.dimensions.should eql("100x200")
