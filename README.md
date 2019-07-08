@@ -12,12 +12,12 @@ With Cacofonix, you can:
 - Write ONIX files
 
 Cacofonix is an updated, maintained fork of James Healy's original [onix
-gem][onix_gem_original], also incorporating Joseph Pearson's [major
-refactorings][onix_gem_joseph] and expanded support for the standard.
+gem][gem_original], also incorporating Joseph Pearson's [major
+refactorings][gem_joseph] and expanded support for the standard.
 
 [onix_standard]: https://www.editeur.org/11/Books/
-[onix_gem_original]: https://github.com/yob/onix
-[onix_gem_joseph]: https://github.com/yob/onix/pull/3
+[gem_original]: https://github.com/yob/onix
+[gem_joseph]: https://github.com/yob/onix/pull/3
 
 ## Installation
 
