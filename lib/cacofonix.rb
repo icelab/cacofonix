@@ -6,16 +6,6 @@ require 'singleton'
 require 'roxml'
 
 module Cacofonix
-  module Version #:nodoc:
-    Major = 0
-    Minor = 9
-    Tiny  = 0
-
-    String = [Major, Minor, Tiny].join('.')
-  end
-
-  VERSION = Version::String
-
   class Formatters
     def self.decimal
       lambda do |val|
