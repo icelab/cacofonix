@@ -2,7 +2,7 @@
 
 require 'spec_helper.rb'
 
-describe ONIX::Product do
+describe Cacofonix::Product do
 
   before(:each) do
     load_doc_and_root("product.xml")
@@ -10,7 +10,7 @@ describe ONIX::Product do
   end
 
   it "should provide read access to first level attributes" do
-    product = ONIX::Product.from_xml(@product_node.to_s)
+    product = Cacofonix::Product.from_xml(@product_node.to_s)
 
     product.record_reference.should eql("365-9780194351898")
     product.notification_type.should eql(3)
@@ -31,27 +31,27 @@ describe ONIX::Product do
   end
 
   it "should provide read access to product IDs" do
-    product = ONIX::Product.from_xml(@product_node.to_s)
+    product = Cacofonix::Product.from_xml(@product_node.to_s)
     product.product_identifiers.size.should eql(3)
   end
 
   it "should provide read access to titles" do
-    product = ONIX::Product.from_xml(@product_node.to_s)
+    product = Cacofonix::Product.from_xml(@product_node.to_s)
     product.titles.size.should eql(1)
   end
 
   it "should provide read access to subjects" do
-    product = ONIX::Product.from_xml(@product_node.to_s)
+    product = Cacofonix::Product.from_xml(@product_node.to_s)
     product.subjects.size.should eql(1)
   end
 
   it "should provide read access to measurements" do
-    product = ONIX::Product.from_xml(@product_node.to_s)
+    product = Cacofonix::Product.from_xml(@product_node.to_s)
     product.measurements.size.should eql(1)
   end
 
   it "should provide write access to first level attributes" do
-    product = ONIX::Product.new
+    product = Cacofonix::Product.new
 
     product.notification_type = 3
     product.to_xml.to_s.include?("<NotificationType>03</NotificationType>").should be true
@@ -83,7 +83,7 @@ describe ONIX::Product do
 
   it "should correctly from_xml files that have an invalid publication date" do
     file = find_data_file("product_invalid_pubdate.xml")
-    product = ONIX::Product.from_xml(File.read(file))
+    product = Cacofonix::Product.from_xml(File.read(file))
 
     product.bic_main_subject.should eql("VXFC1")
     product.publication_date.should be_nil
@@ -91,30 +91,30 @@ describe ONIX::Product do
 
 
   it "should load an interpretation" do
-    product = ONIX::Product.new
-    product.interpret(ONIX::SpecInterpretations::Setters)
+    product = Cacofonix::Product.new
+    product.interpret(Cacofonix::SpecInterpretations::Setters)
     product.title = "Grimm's Fairy Tales"
     product.titles.first.title_text.should eql("Grimm's Fairy Tales")
   end
 
   it "should load several interpretations" do
-    product = ONIX::Product.new
+    product = Cacofonix::Product.new
     product.interpret([
-      ONIX::SpecInterpretations::Getters,
-      ONIX::SpecInterpretations::Setters
+      Cacofonix::SpecInterpretations::Getters,
+      Cacofonix::SpecInterpretations::Setters
     ])
     product.title = "Grimm's Fairy Tales"
     product.title.should eql("grimm's fairy tales")
   end
 
   it "should pass on interpretations to other products" do
-    product1 = ONIX::Product.new
+    product1 = Cacofonix::Product.new
     product1.interpret([
-      ONIX::SpecInterpretations::Getters,
-      ONIX::SpecInterpretations::Setters
+      Cacofonix::SpecInterpretations::Getters,
+      Cacofonix::SpecInterpretations::Setters
     ])
 
-    product2 = ONIX::Product.new
+    product2 = Cacofonix::Product.new
     product1.interpret_like_me(product2)
     product2.title = "Grimm's Fairy Tales"
     product2.title.should eql("grimm's fairy tales")

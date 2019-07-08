@@ -7,10 +7,10 @@ Bundler.setup
 require 'date'
 require 'stringio'
 require 'rubygems'
-require 'onix'
+require 'cacofonix'
 
 
-module ONIX::SpecHelpers
+module Cacofonix::SpecHelpers
 
   def find_data_file(subpath)
     data_path = File.join(File.dirname(__FILE__), '..', 'data')
@@ -28,12 +28,12 @@ module ONIX::SpecHelpers
 
 end
 
-include ONIX::SpecHelpers
+include Cacofonix::SpecHelpers
 
 
 # Simple example interpretations
 #
-module ONIX::SpecInterpretations
+module Cacofonix::SpecInterpretations
   module Getters
     def title
       titles.first.title_text.downcase
@@ -43,7 +43,7 @@ module ONIX::SpecInterpretations
   module Setters
     def title=(str)
       composite = titles.first
-      titles << composite = ONIX::Title.new  if composite.nil?
+      titles << composite = Cacofonix::Title.new  if composite.nil?
       composite.title_type = 1
       composite.title_text = str
     end

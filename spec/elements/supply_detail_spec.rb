@@ -2,19 +2,19 @@
 
 require 'spec_helper.rb'
 
-describe ONIX::SupplyDetail do
+describe Cacofonix::SupplyDetail do
 
   before(:each) do
     load_doc_and_root("supply_detail.xml")
   end
 
   it "should correctly convert to a string" do
-    sd = ONIX::SupplyDetail.from_xml(@root.to_s)
+    sd = Cacofonix::SupplyDetail.from_xml(@root.to_s)
     sd.to_xml.to_s[0,14].should eql("<SupplyDetail>")
   end
 
   it "should provide read access to first level attributes" do
-    sd = ONIX::SupplyDetail.from_xml(@root.to_s)
+    sd = Cacofonix::SupplyDetail.from_xml(@root.to_s)
 
     sd.supplier_name.should eql("Rainbow Book Agencies")
     sd.product_availability.should eql(21)
@@ -26,7 +26,7 @@ describe ONIX::SupplyDetail do
   end
 
   it "should provide write access to first level attributes" do
-    sd = ONIX::SupplyDetail.new
+    sd = Cacofonix::SupplyDetail.new
 
     sd.supplier_name = "RBA"
     sd.to_xml.to_s.include?("<SupplierName>RBA</SupplierName>").should be true

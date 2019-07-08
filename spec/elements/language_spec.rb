@@ -2,19 +2,19 @@
 
 require 'spec_helper.rb'
 
-describe ONIX::Language do
+describe Cacofonix::Language do
 
   before(:each) do
     load_doc_and_root("language.xml")
   end
 
   it "should correctly convert to a string" do
-    lan = ONIX::Language.from_xml(@root.to_s)
+    lan = Cacofonix::Language.from_xml(@root.to_s)
     lan.to_xml.to_s[0,10].should eql("<Language>")
   end
 
   it "should provide read access to first level attributes" do
-    lan = ONIX::Language.from_xml(@root.to_s)
+    lan = Cacofonix::Language.from_xml(@root.to_s)
 
     lan.language_role.should eql(1)
     lan.language_code.should eql("eng")
@@ -22,7 +22,7 @@ describe ONIX::Language do
   end
 
   it "should provide write access to first level attributes" do
-    lan = ONIX::Language.new
+    lan = Cacofonix::Language.new
 
     lan.language_role = 2
     lan.to_xml.to_s.include?("<LanguageRole>02</LanguageRole>").should be true
