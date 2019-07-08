@@ -18,9 +18,8 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.5'
 
+  s.add_dependency('dry-core', '~> 0.4')
   s.add_dependency('roxml', '~>4.0')
-  s.add_dependency('activesupport')
-  s.add_dependency('i18n')
   s.add_dependency('nokogiri')
   s.add_dependency "cacofonix-dtds", "~> 0.1"
 

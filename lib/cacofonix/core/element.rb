@@ -1,14 +1,12 @@
-# coding: utf-8
+require "dry/core/class_attributes"
 
 module Cacofonix
 
   class Element
-
+    extend Dry::Core::ClassAttributes
     include ROXML
 
-    require 'active_support/core_ext/class'
-
-    class_attribute(:xml_array_accessors)
+    defines :xml_array_accessors
 
     # An accessor to an array of element instances.
     #
@@ -249,32 +247,22 @@ module Cacofonix
     end
 
 
-    # We should initialize the instance accessors of array-type xml tags
-    # with an empty array. These two methods do that. If you override
-    # initialize in a subclass, don't forget to call super.
-    #
-
-    def self.xml_accessor(*syms, &blk)
-      options = syms.extract_options!
+    def self.xml_accessor(attr, *args, **options)
       if options[:as] && options[:as].kind_of?(Array)
-        self.xml_array_accessors ||= []
-        self.xml_array_accessors = xml_array_accessors.dup
-        self.xml_array_accessors << syms.first
+        xml_array_accessors(Array(xml_array_accessors) + [attr])
       end
-      syms.push(options)
+
       super
     end
 
 
-    def initialize
+    def initialize(*)
       if self.class.xml_array_accessors
-        self.class.xml_array_accessors = self.class.xml_array_accessors.dup
-        self.class.xml_array_accessors.each { |name|
-          asgn = "#{name}="
-          raise "Can't assign #{name} for #{self.class} - xml_array_accessors inheritance error?" unless respond_to?(asgn)
-          self.send(asgn, [])
-        }
+        self.class.xml_array_accessors.each do |attr|
+          send :"#{attr}=", []
+        end
       end
+
       super
     end
 
