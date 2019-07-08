@@ -1,3 +1,17 @@
+# Changelog
+
+## [0.10.0] - 2019-07-08
+
+### Changed
+
+- Rename gem from onix to cacofonix
+- Rename primary module namespace from `ONIX` to `Cacofonix`
+- Use Cacofonix::DTDs to set appropriate env vars before XML parsing; required for ONIX 2.1 DTDs to be properly loaded and related entities in source XML files to be respected
+- Address Fixnum->Integer and BigDecimal.new->BigDecimal deprecations
+- Require Ruby 2.5 or newer
+
+# Previous releases (as onix gem)
+
 v0.9.1 (5th September 2011)
 - relax activesupport dependency to work with rails 3 or 3.1
 
