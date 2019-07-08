@@ -2,7 +2,7 @@
 
 require 'spec_helper.rb'
 
-describe ONIX::Header do
+describe Cacofonix::Header do
 
   before(:each) do
     load_doc_and_root("header.xml")
@@ -10,12 +10,12 @@ describe ONIX::Header do
   end
 
   it "should correctly convert to a string" do
-    header = ONIX::Header.from_xml(@header_node.to_s)
+    header = Cacofonix::Header.from_xml(@header_node.to_s)
     header.to_xml.to_s[0,8].should eql("<Header>")
   end
 
   it "should provide read access to first level attributes" do
-    header = ONIX::Header.from_xml(@header_node.to_s)
+    header = Cacofonix::Header.from_xml(@header_node.to_s)
 
     header.from_ean_number.should eql("1111111111111")
     header.from_san.should eql("1111111")
@@ -41,7 +41,7 @@ describe ONIX::Header do
   end
 
   it "should provide write access to first level attributes" do
-    header = ONIX::Header.new
+    header = Cacofonix::Header.new
 
     header.from_ean_number = "1111111111111"
     #puts header.to_xml.to_s
@@ -94,7 +94,7 @@ describe ONIX::Header do
   end
 
   it "should correctly handle text with & < and >" do
-    header = ONIX::Header.new
+    header = Cacofonix::Header.new
 
     header.from_company = "James & Healy"
     header.to_xml.to_s.include?("James &amp; Healy").should be true
@@ -107,11 +107,11 @@ describe ONIX::Header do
   end
 end
 
-describe ONIX::Header do
+describe Cacofonix::Header do
 
   it "should correctly handle headers with an invalid sent date" do
     file = find_data_file("header_invalid_sentdate.xml")
-    header = ONIX::Header.from_xml(File.read(file))
+    header = Cacofonix::Header.from_xml(File.read(file))
 
     header.sent_date.should be_nil
   end

@@ -2,19 +2,19 @@
 
 require 'spec_helper.rb'
 
-describe ONIX::AudienceRange do
+describe Cacofonix::AudienceRange do
 
   before(:each) do
     load_doc_and_root("audience_range.xml")
   end
 
   it "should correctly convert to a string" do
-    aud = ONIX::AudienceRange.from_xml(@root.to_s)
+    aud = Cacofonix::AudienceRange.from_xml(@root.to_s)
     aud.to_xml.to_s[0,15].should eql("<AudienceRange>")
   end
 
   it "should provide read access to first level attributes" do
-    aud = ONIX::AudienceRange.from_xml(@root.to_s)
+    aud = Cacofonix::AudienceRange.from_xml(@root.to_s)
 
     aud.audience_range_qualifier.should eql(11)
     aud.audience_range_precisions.size.should eql(2)
@@ -26,7 +26,7 @@ describe ONIX::AudienceRange do
   end
 
   it "should provide write access to first level attributes" do
-    aud = ONIX::AudienceRange.new
+    aud = Cacofonix::AudienceRange.new
 
     aud.audience_range_qualifier = 12
     aud.to_xml.to_s.include?("<AudienceRangeQualifier>12</AudienceRangeQualifier>").should be true

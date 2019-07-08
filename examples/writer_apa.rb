@@ -1,16 +1,16 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__) + '/../lib')
 
-require 'onix'
+require 'cacofonix'
 
 File.open('output.xml', "w") do |output|
-  header = ONIX::Header.new
+  header = Cacofonix::Header.new
   header.from_company = "Sample Company"
   header.from_person  = "James"
   header.sent_date = Time.now
 
-  writer = ONIX::Writer.new(output, header)
+  writer = Cacofonix::Writer.new(output, header)
 
-  product = ONIX::APAProduct.new
+  product = Cacofonix::APAProduct.new
   product.notification_type = 2
   product.record_reference = 1
   product.isbn10 = "1844836902"

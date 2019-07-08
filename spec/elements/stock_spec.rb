@@ -2,19 +2,19 @@
 
 require 'spec_helper.rb'
 
-describe ONIX::Stock do
+describe Cacofonix::Stock do
 
   before(:each) do
     load_doc_and_root("stock.xml")
   end
 
   it "should correctly convert to a string" do
-    s = ONIX::Stock.from_xml(@root.to_s)
+    s = Cacofonix::Stock.from_xml(@root.to_s)
     s.to_xml.to_s[0,7].should eql("<Stock>")
   end
 
   it "should provide read access to first level attributes" do
-    s = ONIX::Stock.from_xml(@root.to_s)
+    s = Cacofonix::Stock.from_xml(@root.to_s)
 
     # note that these fields *should* be numeric according to the ONIX spec,
     # however heaps of ONIX files in the wild have strings there.
@@ -23,7 +23,7 @@ describe ONIX::Stock do
   end
 
   it "should provide write access to first level attributes" do
-    s = ONIX::Stock.new
+    s = Cacofonix::Stock.new
 
     s.on_hand = "123"
     s.to_xml.to_s.include?("<OnHand>123</OnHand>").should be true

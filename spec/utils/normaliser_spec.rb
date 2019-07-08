@@ -2,7 +2,7 @@
 
 require 'spec_helper.rb'
 
-describe ONIX::Normaliser, "with a simple short tag file" do
+describe Cacofonix::Normaliser, "with a simple short tag file" do
 
   before(:each) do
     @filename = find_data_file("short_tags.xml")
@@ -14,7 +14,7 @@ describe ONIX::Normaliser, "with a simple short tag file" do
   end
 
   it "should correctly convert short tag file to reference tag" do
-    ONIX::Normaliser.process(@filename, @outfile)
+    Cacofonix::Normaliser.process(@filename, @outfile)
 
     File.file?(@outfile).should be true
     content = File.read(@outfile)
@@ -24,7 +24,7 @@ describe ONIX::Normaliser, "with a simple short tag file" do
   end
 end
 
-describe ONIX::Normaliser, "with a short tag file that include HTML tags" do
+describe Cacofonix::Normaliser, "with a short tag file that include HTML tags" do
 
   before(:each) do
     @filename = find_data_file("short_tags_ivp.xml")
@@ -36,7 +36,7 @@ describe ONIX::Normaliser, "with a short tag file that include HTML tags" do
   end
 
   it "should correctly convert short tag file to reference tag" do
-    ONIX::Normaliser.process(@filename, @outfile)
+    Cacofonix::Normaliser.process(@filename, @outfile)
 
     File.file?(@outfile).should be true
     content = File.read(@outfile)
@@ -47,7 +47,7 @@ describe ONIX::Normaliser, "with a short tag file that include HTML tags" do
 
 end
 
-describe ONIX::Normaliser, "with a utf8 file that has illegal control chars" do
+describe Cacofonix::Normaliser, "with a utf8 file that has illegal control chars" do
 
   before(:each) do
     @filename = find_data_file("control_chars.xml")
@@ -59,7 +59,7 @@ describe ONIX::Normaliser, "with a utf8 file that has illegal control chars" do
   end
 
   it "should remove all control chars except LF, CR and TAB" do
-    ONIX::Normaliser.process(@filename, @outfile)
+    Cacofonix::Normaliser.process(@filename, @outfile)
 
     File.file?(@outfile).should be true
     content = File.read(@outfile)

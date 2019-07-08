@@ -2,7 +2,7 @@
 
 require 'spec_helper.rb'
 
-describe ONIX::Reader do
+describe Cacofonix::Reader do
 
   before(:each) do
     @file1 = find_data_file("9780194351898.xml")
@@ -14,33 +14,33 @@ describe ONIX::Reader do
   end
 
   it "should initialize with a filename" do
-    reader = ONIX::Reader.new(@file1)
+    reader = Cacofonix::Reader.new(@file1)
     reader.instance_variable_get("@reader").should be_a_kind_of(Nokogiri::XML::Reader)
   end
 
   it "should initialize with an IO object" do
     File.open(@file1,"rb") do |f|
-      reader = ONIX::Reader.new(f)
+      reader = Cacofonix::Reader.new(f)
       reader.instance_variable_get("@reader").should be_a_kind_of(Nokogiri::XML::Reader)
     end
   end
 
   it "should provide access to various XML metadata from file" do
     filename = find_data_file("reference_with_release_attrib.xml")
-    reader = ONIX::Reader.new(filename)
+    reader = Cacofonix::Reader.new(filename)
     reader.release.should eql(BigDecimal("2.1"))
   end
 
   it "should provide access to the header in an ONIX file" do
-    reader = ONIX::Reader.new(@file1)
-    reader.header.should be_a_kind_of(ONIX::Header)
+    reader = Cacofonix::Reader.new(@file1)
+    reader.header.should be_a_kind_of(Cacofonix::Header)
   end
 
   it "should iterate over all product records in an ONIX file" do
-    reader = ONIX::Reader.new(@file1)
+    reader = Cacofonix::Reader.new(@file1)
     counter = 0
     reader.each do |product|
-      product.should be_a_kind_of(ONIX::Product)
+      product.should be_a_kind_of(Cacofonix::Product)
       counter += 1
     end
 
@@ -48,7 +48,7 @@ describe ONIX::Reader do
   end
 
   it "should iterate over all product records in an ONIX file" do
-    reader = ONIX::Reader.new(@file2)
+    reader = Cacofonix::Reader.new(@file2)
     products = []
     reader.each do |product|
       products << product
@@ -63,7 +63,7 @@ describe ONIX::Reader do
   # barfs when it encounters others. In theory other entities are defined in the
   # ONIX DTD, but I can't work out how to get libxml to recognise them
   it "should correctly parse a file that has an entity in it" do
-    reader = ONIX::Reader.new(@entity_file)
+    reader = Cacofonix::Reader.new(@entity_file)
 
     products = []
     reader.each do |product|
@@ -78,7 +78,7 @@ describe ONIX::Reader do
 
   # for some reason I'm getting segfaults when I read a file with more than 7 records
   it "should correctly parse a file with more than 7 records in in" do
-    reader = ONIX::Reader.new(@long_file)
+    reader = Cacofonix::Reader.new(@long_file)
     counter = 0
     reader.each do |product|
       counter += 1
@@ -88,7 +88,7 @@ describe ONIX::Reader do
   end
 
   it "should transparently convert a iso-8859-1 file to utf-8" do
-    reader = ONIX::Reader.new(@iso_8859_1_file)
+    reader = Cacofonix::Reader.new(@iso_8859_1_file)
     product = nil
     reader.each do |p|
       product = p
@@ -104,7 +104,7 @@ describe ONIX::Reader do
   end
 
   it "should transparently convert a utf-16 file to utf-8" do
-    reader = ONIX::Reader.new(@utf_16_file)
+    reader = Cacofonix::Reader.new(@utf_16_file)
     product = nil
     reader.each do |p|
       product = p
@@ -120,7 +120,7 @@ describe ONIX::Reader do
   end
 
   it "should be rewindable" do
-    reader = ONIX::Reader.new(@file1)
+    reader = Cacofonix::Reader.new(@file1)
     product_arrays = [[],[],[]]
 
     # On the first loop, products are found.
@@ -138,28 +138,28 @@ describe ONIX::Reader do
   end
 
   it "should provide all products as an array" do
-    reader = ONIX::Reader.new(@file2)
+    reader = Cacofonix::Reader.new(@file2)
     reader.products.size.should eql(2)
     # Test this again to make sure it's memoized.
     reader.products.size.should eql(2)
   end
 
 
-  it "should augment ONIX::Product objects with interpretations" do
-    reader = ONIX::Reader.new(
+  it "should augment Cacofonix::Product objects with interpretations" do
+    reader = Cacofonix::Reader.new(
       @file1,
-      ONIX::Product,
-      :interpret => ONIX::SpecInterpretations::Getters
+      Cacofonix::Product,
+      :interpret => Cacofonix::SpecInterpretations::Getters
     )
     reader.products.first.title.should eql("oxford picture dictionary chinese")
   end
 
 
   it "should augment product inside SimpleProduct with interpretations" do
-    reader = ONIX::Reader.new(
+    reader = Cacofonix::Reader.new(
       @file1,
-      ONIX::APAProduct,
-      :interpret => ONIX::SpecInterpretations::Getters
+      Cacofonix::APAProduct,
+      :interpret => Cacofonix::SpecInterpretations::Getters
     )
     reader.products.first.product.title.should eql("oxford picture dictionary chinese")
   end

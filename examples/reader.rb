@@ -1,12 +1,12 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__) + '/../lib')
 
-require 'onix'
+require 'cacofonix'
 
-#reader = ONIX::Reader.new(File.join(File.dirname(__FILE__),"..","data","0705NHP.XML"))
-#reader = ONIX::Reader.new(File.join(File.dirname(__FILE__),"..","data","9780194351898.xml"))
-#reader = ONIX::Reader.new(File.join(File.dirname(__FILE__),"..","data","jul.xml"))
-reader = ONIX::Reader.new(File.join(File.dirname(__FILE__),"..","bookwise.xml"))
-#reader = ONIX::Reader.new(File.join(File.dirname(__FILE__),"..","data","rba_FANT.xml"))
+#reader = Cacofonix::Reader.new(File.join(File.dirname(__FILE__),"..","data","0705NHP.XML"))
+#reader = Cacofonix::Reader.new(File.join(File.dirname(__FILE__),"..","data","9780194351898.xml"))
+#reader = Cacofonix::Reader.new(File.join(File.dirname(__FILE__),"..","data","jul.xml"))
+reader = Cacofonix::Reader.new(File.join(File.dirname(__FILE__),"..","bookwise.xml"))
+#reader = Cacofonix::Reader.new(File.join(File.dirname(__FILE__),"..","data","rba_FANT.xml"))
 counter = 0
 
 # display header info

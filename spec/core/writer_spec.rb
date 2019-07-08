@@ -2,15 +2,15 @@
 
 require 'spec_helper.rb'
 
-describe ONIX::Writer do
+describe Cacofonix::Writer do
 
   before(:each) do
     @output = StringIO.new
   end
 
   it "should output the correct xml metadata" do
-    header = ONIX::Header.new
-    writer = ONIX::Writer.new(@output, header)
+    header = Cacofonix::Header.new
+    writer = Cacofonix::Writer.new(@output, header)
     writer.end_document
 
     lines = @output.string.split("\n")
@@ -23,8 +23,8 @@ describe ONIX::Writer do
   end
 
   it "should output the correct xml metadata when used in block form" do
-    header = ONIX::Header.new
-    ONIX::Writer.open(@output, header) { |writer| }
+    header = Cacofonix::Header.new
+    Cacofonix::Writer.open(@output, header) { |writer| }
 
     lines = @output.string.split("\n")
 
@@ -36,9 +36,9 @@ describe ONIX::Writer do
   end
 
   it "should output the header node" do
-    header = ONIX::Header.new
+    header = Cacofonix::Header.new
 
-    ONIX::Writer.open(@output, header) { |writer| }
+    Cacofonix::Writer.open(@output, header) { |writer| }
 
     lines = @output.string.split("\n")
 
@@ -46,10 +46,10 @@ describe ONIX::Writer do
   end
 
   it "should output the product node" do
-    header = ONIX::Header.new
-    product = ONIX::Product.new
+    header = Cacofonix::Header.new
+    product = Cacofonix::Product.new
 
-    ONIX::Writer.open(@output, header) do |writer|
+    Cacofonix::Writer.open(@output, header) do |writer|
       writer << product
     end
 
@@ -60,8 +60,8 @@ describe ONIX::Writer do
 
 
   it "should output product nodes created and yielded by writer" do
-    header = ONIX::Header.new
-    ONIX::Writer.open(@output, header, :class => ONIX::APAProduct) do |writer|
+    header = Cacofonix::Header.new
+    Cacofonix::Writer.open(@output, header, :class => Cacofonix::APAProduct) do |writer|
       writer.product do |product|
         product.title = "Grimm's Fairy Tales"
         product.publication_date = Date.parse("2011-04-13")
@@ -73,10 +73,10 @@ describe ONIX::Writer do
   end
 
   it "should output product nodes with interpretations" do
-    ONIX::Writer.open(
+    Cacofonix::Writer.open(
       @output,
-      ONIX::Header.new,
-      :interpret => ONIX::SpecInterpretations::Setters
+      Cacofonix::Header.new,
+      :interpret => Cacofonix::SpecInterpretations::Setters
     ) do |writer|
       writer.product { |p| p.title = "Grimm's Fairy Tales" }
     end
@@ -85,8 +85,8 @@ describe ONIX::Writer do
   end
 
   it "should correctly store finished state" do
-    header = ONIX::Header.new
-    writer = ONIX::Writer.new(@output, header)
+    header = Cacofonix::Header.new
+    writer = Cacofonix::Writer.new(@output, header)
     writer.finished?.should be false
     writer.end_document
     writer.finished?.should be true
@@ -94,9 +94,9 @@ describe ONIX::Writer do
 
 =begin
   it "should convert non-ASCII chars to references when outputting as a string" do
-    header = ONIX::Header.new
+    header = Cacofonix::Header.new
     header.from_person = "Hans Küng"
-    ONIX::Writer.open(@output, header) { |writer| }
+    Cacofonix::Writer.open(@output, header) { |writer| }
 
     @output.string.include?("K&#252;ng").should be true
   end

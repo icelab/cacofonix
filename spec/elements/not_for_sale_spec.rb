@@ -2,7 +2,7 @@
 
 require 'spec_helper.rb'
 
-describe ONIX::NotForSale do
+describe Cacofonix::NotForSale do
 
   before(:each) do
     load_doc_and_root("sales_rights.xml")
@@ -11,19 +11,19 @@ describe ONIX::NotForSale do
 
 
   it "should correctly convert to a string" do
-    rep = ONIX::NotForSale.from_xml(@nfs.to_s)
+    rep = Cacofonix::NotForSale.from_xml(@nfs.to_s)
     rep.should produce_the_tag("<NotForSale>")
   end
 
 
   it "should provide read access to first level attributes" do
-    p = ONIX::Product.from_xml(@root.to_s)
+    p = Cacofonix::Product.from_xml(@root.to_s)
     p.not_for_sales[0].rights_countries.should eql(["GB"])
   end
 
 
   it "should provide write access to first level attributes" do
-    nfs = ONIX::NotForSale.new
+    nfs = Cacofonix::NotForSale.new
     nfs.rights_countries = ["GB", "US", "IE"]
     nfs.should include_the_xml("<RightsCountry>GB US IE</RightsCountry>")
   end

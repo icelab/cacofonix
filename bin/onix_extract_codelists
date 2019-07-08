@@ -36,6 +36,6 @@ end
 
 options = parse_options
 
-require "onix"
-extractor = ONIX::CodeListExtractor.new(ARGV.shift, options[:format])
+require "cacofonix"
+extractor = Cacofonix::CodeListExtractor.new(ARGV.shift, options[:format])
 extractor.run(ARGV.shift)

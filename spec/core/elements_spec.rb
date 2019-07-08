@@ -2,14 +2,14 @@
 
 require 'spec_helper.rb'
 
-describe ONIX::Element, "custom accessors" do
+describe Cacofonix::Element, "custom accessors" do
 
   before(:all) do
-    class ONIX::TestElement < ONIX::Element
+    class Cacofonix::TestElement < Cacofonix::Element
       xml_name "TestElement"
       onix_date_accessor(:test_date, "TestDate")
       onix_date_accessor(:m_dates, "MDate", :as => [Date])
-      onix_composite(:websites, ONIX::Website)
+      onix_composite(:websites, Cacofonix::Website)
       onix_space_separated_list(:countries, "CountryCodes")
       onix_code_from_list(:update_code, "UpdateCode", :list => 1)
       onix_codes_from_list(:identifiers, "Identifier", :list => 5)
@@ -27,7 +27,7 @@ describe ONIX::Element, "custom accessors" do
         <TestDate>20010101</TestDate>
       </TestElement>
     `
-    elem = ONIX::TestElement.from_xml(xml)
+    elem = Cacofonix::TestElement.from_xml(xml)
     elem.test_date.should eql(Date.parse("2001-01-01"))
   end
 
@@ -39,7 +39,7 @@ describe ONIX::Element, "custom accessors" do
         <MDate>20100101</MDate>
       </TestElement>
     `
-    elem = ONIX::TestElement.from_xml(xml)
+    elem = Cacofonix::TestElement.from_xml(xml)
     elem.m_dates.size.should eql(2)
   end
 
@@ -58,7 +58,7 @@ describe ONIX::Element, "custom accessors" do
         </Website>
       </TestElement>
     `
-    elem = ONIX::TestElement.from_xml(xml)
+    elem = Cacofonix::TestElement.from_xml(xml)
     elem.websites.size.should eql(2)
     elem.websites[1].website_description.should eql("Web-based ebooks!")
   end
@@ -70,7 +70,7 @@ describe ONIX::Element, "custom accessors" do
         <CountryCodes>AU NZ US</CountryCodes>
       </TestElement>
     `
-    elem = ONIX::TestElement.from_xml(xml)
+    elem = Cacofonix::TestElement.from_xml(xml)
     elem.countries.should eql(["AU", "NZ", "US"])
   end
 
@@ -81,7 +81,7 @@ describe ONIX::Element, "custom accessors" do
         <UpdateCode>01</UpdateCode>
       </TestElement>
     `
-    elem = ONIX::TestElement.from_xml(xml)
+    elem = Cacofonix::TestElement.from_xml(xml)
     elem.update_code.should eql(1)
     elem.update_code_code.value.should eql("Early notification")
   end
@@ -94,7 +94,7 @@ describe ONIX::Element, "custom accessors" do
         <Identifier>22</Identifier>
       </TestElement>
     `
-    elem = ONIX::TestElement.from_xml(xml)
+    elem = Cacofonix::TestElement.from_xml(xml)
     elem.identifiers.should eql([4, 22])
     elem.identifiers_codes.collect { |c| c.value }.should eql(["UPC", "URN"])
   end
@@ -106,7 +106,7 @@ describe ONIX::Element, "custom accessors" do
         <Identifier>This is not a valid code in the list</Identifier>
       </TestElement>
     `
-    elem = ONIX::TestElement.from_xml(xml)
+    elem = Cacofonix::TestElement.from_xml(xml)
     elem.identifiers_codes.first.value.should be_nil
   end
 
@@ -118,7 +118,7 @@ describe ONIX::Element, "custom accessors" do
         <LaxIdentifier>#{inv}</LaxIdentifier>
       </TestElement>
     `
-    elem = ONIX::TestElement.from_xml(xml)
+    elem = Cacofonix::TestElement.from_xml(xml)
     elem.lax_identifier_code.value.should eql(inv)
   end
 
@@ -129,20 +129,20 @@ describe ONIX::Element, "custom accessors" do
         <StrictIdentifier>This is not a valid code in the list</StrictIdentifier>
       </TestElement>
     `
-    lambda { ONIX::TestElement.from_xml(xml) }.should raise_error(ONIX::CodeNotFoundInList)
+    lambda { Cacofonix::TestElement.from_xml(xml) }.should raise_error(Cacofonix::CodeNotFoundInList)
   end
 
 
   it "should recognise boolean flags" do
     xml = "<TestElement><NoDice /></TestElement>"
-    elem = ONIX::TestElement.from_xml(xml)
+    elem = Cacofonix::TestElement.from_xml(xml)
     elem.no_dice.should be true
     elem.no_cigar.should be false
   end
 
 
   it "should process code values through a block first if given" do
-    class ONIX::TestElementA < ONIX::Element
+    class Cacofonix::TestElementA < Cacofonix::Element
       xml_name "TestElementA"
       onix_codes_from_list(:ccs, "CC", :list => 91) { |v| v ? v.split : [] }
       # ...this is simply sugar for the previous declaration
@@ -156,7 +156,7 @@ describe ONIX::Element, "custom accessors" do
         <DD>TO</DD>
       </TestElementA>
     `
-    elem = ONIX::TestElementA.from_xml(xml)
+    elem = Cacofonix::TestElementA.from_xml(xml)
     elem.ccs_codes.collect(&:key).should eql(["AU","UA","NL","NZ"])
     elem.dds_codes.collect(&:value).should eql(["Chad","Togo","Tonga"])
   end
@@ -176,7 +176,7 @@ describe ONIX::Element, "custom accessors" do
         </Website>
       </TestElement>
     `
-    elem = ONIX::TestElement.from_xml(xml)
+    elem = Cacofonix::TestElement.from_xml(xml)
     website = elem.fetch(:websites, :website_role, 1)
     website.should_not be_nil
     website.website_link.should eql("http://www.rainbowbooks.com.au")
@@ -196,7 +196,7 @@ describe ONIX::Element, "custom accessors" do
         </Website>
       </TestElement>
     `
-    elem = ONIX::TestElement.from_xml(xml)
+    elem = Cacofonix::TestElement.from_xml(xml)
     websites = elem.fetch_all(:websites, :website_role, 1)
     websites.should_not be_empty
     websites.collect { |ws| ws.website_link }.should eql([
@@ -219,7 +219,7 @@ describe ONIX::Element, "custom accessors" do
         </Website>
       </TestElement>
     `
-    elem = ONIX::TestElement.from_xml(xml)
+    elem = Cacofonix::TestElement.from_xml(xml)
     websites1 = elem.fetch_all(:websites, :website_role, 1)
     websites1.size.should eql(1)
     websites2 = elem.fetch_all(:websites, :website_role, [1,2])

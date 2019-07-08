@@ -3,7 +3,7 @@
 require 'spec_helper.rb'
 require 'date'
 
-describe "ONIX::APAProduct" do
+describe "Cacofonix::APAProduct" do
 
   before(:each) do
     load_doc_and_root("product.xml")
@@ -11,8 +11,8 @@ describe "ONIX::APAProduct" do
   end
 
   it "should provide read access to attributes" do
-    @product = ONIX::Product.from_xml(@product_node.to_s)
-    @apa     = ONIX::APAProduct.new(@product)
+    @product = Cacofonix::Product.from_xml(@product_node.to_s)
+    @apa     = Cacofonix::APAProduct.new(@product)
 
     @apa.record_reference.should eql("365-9780194351898")
     @apa.notification_type.should eql(3)
@@ -25,7 +25,7 @@ describe "ONIX::APAProduct" do
   end
 
   it "should provide write access to attributes" do
-    apa = ONIX::APAProduct.new
+    apa = Cacofonix::APAProduct.new
 
     apa.notification_type = 3
     apa.to_xml.to_s.include?("<NotificationType>03</NotificationType>").should be true
@@ -54,9 +54,9 @@ describe "ONIX::APAProduct" do
 
 end
 
-describe ONIX::APAProduct, "series method" do
+describe Cacofonix::APAProduct, "series method" do
   it "should set the nested series value on the underlying product class" do
-    apa = ONIX::APAProduct.new
+    apa = Cacofonix::APAProduct.new
 
     apa.series = "Harry Potter"
     apa.series.should eql("Harry Potter")
@@ -64,29 +64,29 @@ describe ONIX::APAProduct, "series method" do
   end
 end
 
-describe ONIX::APAProduct, "price method" do
+describe Cacofonix::APAProduct, "price method" do
   before(:each) do
     load_doc_and_root("usd.xml")
     @product_node = @root
   end
 
   it "should return the first price in the file, regardless of type" do
-    @product = ONIX::Product.from_xml(@product_node.to_s)
-    @apa     = ONIX::APAProduct.new(@product)
+    @product = Cacofonix::Product.from_xml(@product_node.to_s)
+    @apa     = Cacofonix::APAProduct.new(@product)
 
     @apa.price.should eql(BigDecimal("99.95"))
   end
 end
 
-describe ONIX::APAProduct, "rrp_exc_sales_tax method" do
+describe Cacofonix::APAProduct, "rrp_exc_sales_tax method" do
   before(:each) do
     load_doc_and_root("usd.xml")
     @product_node = @root
   end
 
   it "should return the first price in the file of type 1" do
-    @product = ONIX::Product.from_xml(@product_node.to_s)
-    @apa     = ONIX::APAProduct.new(@product)
+    @product = Cacofonix::Product.from_xml(@product_node.to_s)
+    @apa     = Cacofonix::APAProduct.new(@product)
 
     @apa.rrp_exc_sales_tax.should eql(BigDecimal("99.95"))
   end
