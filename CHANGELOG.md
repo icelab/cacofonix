@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.10.1] - 2020-02-13
+
+### Fixed
+
+- Bug in discount coded element that was preventing discount code from loading.
+
 ## [0.10.0] - 2019-07-08
 
 ### Changed
