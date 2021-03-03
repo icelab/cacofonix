@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.2] - 2021-03-03
+
+### Fixed
+
+- Added missing item 16 (Image: Master brand logo) to List 38.
+- Fixed keyword argument syntax to work on MRI 3.0.0.
+
 ## [0.10.1] - 2020-02-13
 
 ### Fixed
