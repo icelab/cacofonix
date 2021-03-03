@@ -11,7 +11,7 @@ module Cacofonix
         :as => BigDecimal,
         :to_xml => Cacofonix::Formatters.decimal
       }
-      xml_accessor(name, options)
+      xml_accessor(name, **options)
     end
 
 
