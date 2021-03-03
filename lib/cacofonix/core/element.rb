@@ -18,7 +18,7 @@ module Cacofonix
     def self.onix_composite(name, klass, options = {})
       options[:as] = options.delete(:singular) ? klass : [klass]
       options[:from] ||= klass.to_s.split("::").last
-      xml_accessor(name, options)
+      xml_accessor(name, **options)
     end
 
     # An accessor that treats the input/output as a date.
@@ -37,7 +37,7 @@ module Cacofonix
       else
         prep = lambda { |v| Date.parse(v) rescue nil }
       end
-      xml_accessor(name, options, &prep)
+      xml_accessor(name, **options, &prep)
     end
 
     # An accessor that treats the input as a space-separated list, and
@@ -49,7 +49,7 @@ module Cacofonix
         :to_xml => Cacofonix::Formatters.space_separated
       )
       prep = lambda { |v| v ? v.split : [] }
-      xml_accessor(name, options, &prep)
+      xml_accessor(name, **options, &prep)
     end
 
 
@@ -63,7 +63,7 @@ module Cacofonix
         :to_xml => Cacofonix::Formatters.boolean
       )
       prep = lambda { |v| v ? true : false }
-      xml_accessor(name, options, &prep)
+      xml_accessor(name, **options, &prep)
     end
 
 
@@ -117,7 +117,7 @@ module Cacofonix
         Cacofonix::Code.new(list_number, value, code_opts)
       }
       options = options.merge(:from => tag_name)
-      xml_accessor("#{name}_code", options, &prep)
+      xml_accessor("#{name}_code", **options, &prep)
 
       define_method(name) do
         send("#{name}_code").key
@@ -171,7 +171,7 @@ module Cacofonix
         end
       }
       options = options.merge(:from => tag_name, :as => [])
-      xml_accessor("#{name}_codes", options, &prep)
+      xml_accessor("#{name}_codes", **options, &prep)
 
       define_method(name) do
         codes = send("#{name}_codes")
