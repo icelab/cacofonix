@@ -11,6 +11,7 @@ module Cacofonix; module CodeLists
     "10" => "Image: for series",
     "11" => "Image: series logo",
     "12" => "Image: product logo",
+    "16" => "Image: Master brand logo",
     "17" => "Image: publisher logo",
     "18" => "Image: imprint logo",
     "22" => "Image: table of contents",
